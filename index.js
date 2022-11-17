@@ -66,10 +66,11 @@ function asyncCB(par1, cb) {
   asyncPromise(par1)
     .then((handleResolve) => {
       cb(null, handleResolve)
-      asyncCB(handleResolve, cb)
 
       runAsyncParallels(handleResolve)
         .then((results) => results.forEach((promline) => console.log(promline)))
+
+      asyncCB(handleResolve, cb)
     })
     .catch((err) => cb(err))
 }
